@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Demo Gym – Strength, conditioning, community</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;500;600&display=swap">
+<style>
+:root{--bg:#f1f3f2;--surface:#fff;--ink:#0e1b2c;--muted:#556070;--accent:#2a45ff;--on-accent:#fff;--line:#d5dad8;
+--d:'Barlow Condensed','Arial Narrow',Impact,sans-serif;--b:'Barlow',system-ui,-apple-system,'Segoe UI',sans-serif;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0c1420;--surface:#152133;--ink:#eef2f6;--muted:#9aa7b8;--accent:#6f84ff;--on-accent:#0c1420;--line:#26364d}}
+:root[data-theme="dark"]{--bg:#0c1420;--surface:#152133;--ink:#eef2f6;--muted:#9aa7b8;--accent:#6f84ff;--on-accent:#0c1420;--line:#26364d}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.55 var(--b)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:11;background:var(--bg);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{font:800 26px/1 var(--d);letter-spacing:.02em;text-decoration:none}
+nav{display:flex;gap:22px;font-weight:500;font-size:15px}
+nav a{text-decoration:none;color:var(--muted)}nav a:hover{color:var(--ink)}
+.btn{display:inline-block;background:var(--accent);color:var(--on-accent);font:600 16px var(--b);padding:13px 24px;border:0;border-radius:4px;cursor:pointer;text-decoration:none}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:none;color:var(--ink);border:2px solid var(--ink)}
+/* hero */
+.hero{padding:56px 0 40px}
+.hero h1{font:800 clamp(64px,15vw,184px)/.84 var(--d);letter-spacing:-.01em;margin:0 0 28px;text-transform:uppercase}
+.hero h1 span{display:block}
+.hero h1 .o{-webkit-text-stroke:2px var(--ink);color:transparent}
+.hero-row{display:flex;gap:32px;align-items:flex-end;justify-content:space-between;flex-wrap:wrap}
+.hero p{max-width:440px;margin:0 0 20px;color:var(--muted);font-size:19px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.live{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 20px;min-width:240px}
+.live b{font:800 44px/1 var(--d)}
+.live small{display:block;color:var(--muted)}
+.bar{height:8px;background:var(--line);border-radius:4px;margin-top:10px;overflow:hidden}
+.bar i{display:block;height:100%;width:62%;background:var(--accent)}
+section{padding:64px 0}
+h2{font:800 clamp(38px,6vw,64px)/.95 var(--d);text-transform:uppercase;margin:0 0 12px}
+.sub{color:var(--muted);max-width:520px;margin:0 0 32px}
+/* schedule */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.tab{font:600 15px var(--b);padding:9px 16px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:4px;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.cls{display:grid;grid-template-columns:90px 1fr auto;gap:16px;align-items:center;padding:16px 0;border-top:1px solid var(--line)}
+.cls:last-child{border-bottom:1px solid var(--line)}
+.cls time{font:700 26px var(--d)}
+.cls h3{margin:0;font:700 24px/1.1 var(--d);text-transform:uppercase}
+.cls p{margin:2px 0 0;color:var(--muted);font-size:15px}
+.cls button{font:600 14px var(--b);padding:8px 14px;border-radius:4px;border:2px solid var(--ink);background:none;color:var(--ink);cursor:pointer;min-width:96px}
+.cls button.on{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.cls button:disabled{opacity:.45;cursor:not-allowed}
+/* programs */
+.alt{background:var(--surface);border-block:1px solid var(--line)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0;border:1px solid var(--line)}
+.grid>div{padding:26px;border-right:1px solid var(--line)}
+.grid h3{font:800 30px/1 var(--d);text-transform:uppercase;margin:0 0 8px}
+.grid p{margin:0;color:var(--muted);font-size:15.5px}
+/* plans */
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.plan{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:28px}
+.plan.pick{border:2px solid var(--accent)}
+.plan h3{font:800 28px var(--d);text-transform:uppercase;margin:0}
+.price{font:800 54px/1 var(--d);margin:10px 0 14px}.price small{font:500 15px var(--b);color:var(--muted)}
+.plan ul{list-style:none;padding:0;margin:0 0 20px;color:var(--muted);font-size:15.5px}
+.plan li{padding:6px 0;border-top:1px solid var(--line)}
+.plan .btn{width:100%;text-align:center}
+.quotes{background:var(--ink);color:var(--bg);padding:48px 0}
+.quotes .wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:28px}
+.quotes p{margin:0;font:800 clamp(28px,4vw,40px)/1 var(--d);text-transform:uppercase}
+/* trainers */
+.team{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}
+.av{aspect-ratio:1;background:var(--ink);color:var(--bg);display:grid;place-items:center;font:800 88px var(--d);border-radius:4px}
+.team h3{margin:10px 0 0;font:700 24px var(--d);text-transform:uppercase}
+.team p{margin:0;color:var(--muted);font-size:15px}
+/* join */
+form{display:grid;gap:14px;max-width:460px}
+label{font-weight:600;font-size:15px;display:grid;gap:6px}
+input,select{font:400 17px var(--b);padding:12px;border:1px solid var(--line);border-radius:4px;background:var(--surface);color:var(--ink)}
+.ok{background:var(--surface);border:2px solid var(--accent);border-radius:6px;padding:20px;max-width:460px}
+footer{padding:32px 0;border-top:1px solid var(--line);color:var(--muted);font-size:15px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+@media(max-width:640px){nav{display:none}.cls{grid-template-columns:70px 1fr}.cls button{grid-column:2;justify-self:start}.grid>div{border-right:0;border-bottom:1px solid var(--line)}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<a class="logo" href="#top">DEMO GYM</a>
+<nav><a href="#classes">Coaching</a><a href="#programs">Programs</a><a href="#plans">Membership</a><a href="#coaches">Coaches</a></nav>
+<a class="btn" href="#join">Join now</a>
+</div></header>
+
+<main id="top">
+<div class="wrap hero">
+<h1><span>Lift.</span><span class="o">Sweat.</span><span>Repeat.</span></h1>
+<div class="hero-row">
+<div>
+<p>A 12,000 sq ft training floor and certified coaches who train 1 or 2 people at a time. Your first day is on us.</p>
+<div class="cta"><a class="btn" href="#join">Book free trial day</a><a class="btn ghost" href="#classes">See coaching slots</a></div>
+</div>
+<div class="live"><small>On the floor right now</small><b id="cnt">74</b> <span>of 120</span><div class="bar"><i id="fill"></i></div></div>
+</div>
+</div>
+
+<section class="quotes" aria-label="Motivation"><div class="wrap">
+<p>The bar doesn’t care how you feel. Lift it anyway.</p>
+<p>Show up tired. Leave stronger.</p>
+<p>Reps are the only shortcut.</p>
+</div></section>
+
+<section id="classes" class="alt"><div class="wrap">
+<h2>Coaching slots</h2>
+<p class="sub">Each coach trains a maximum of 2 people per session. Slots are for members with a trainer. Tap a slot to hold your spot. Cancel up to 2 hours before.</p>
+<div class="tabs" role="tablist" id="tabs"></div>
+<div id="list"></div>
+</div></section>
+
+<section id="programs"><div class="wrap">
+<h2>Train your way</h2>
+<p class="sub">Four workout programs, one floor. Switch between them whenever you like.</p>
+<div class="grid">
+<div><h3>Strength</h3><p>Barbell fundamentals, progressive overload and coached lifting blocks.</p></div>
+<div><h3>Conditioning</h3><p>Intervals, rowers and sleds. Short sessions that raise your engine.</p></div>
+<div><h3>Hypertrophy</h3><p>Higher-rep muscle building with machines, dumbbells and cables.</p></div>
+<div><h3>Fat loss</h3><p>Circuit training and weights programmed to burn fat and keep muscle.</p></div>
+</div>
+</div></section>
+
+<section id="plans" class="alt"><div class="wrap">
+<h2>Membership</h2>
+<p class="sub">Try one day free. Join the gym for ₹8,000 a year, and add a trainer for 1 month or 1 year if you want one.</p>
+<div class="plans">
+<div class="plan"><h3>Trial day</h3><div class="price">Free<small> /1 day</small></div><ul><li>One full day on the gym floor</li><li>Quick coach walkthrough of the gym</li><li>Once per person</li></ul><a class="btn ghost" href="#join">Book free trial</a></div>
+<div class="plan"><h3>Day pass</h3><div class="price">₹300<small> /visit</small></div><ul><li>Gym floor access for the day</li><li>Locker and showers</li><li>Pay at the front desk</li></ul><a class="btn ghost" href="#classes">See coaching slots</a></div>
+<div class="plan pick"><h3>Gym membership</h3><div class="price">₹8,000<small> /year</small></div><ul><li>Gym floor access for 1 year, 6am–10pm</li><li>Add a trainer any time (see below)</li><li>Locker and showers</li><li>Free fitness assessment and custom plan</li></ul><a class="btn" href="#join">Join for ₹8,000</a></div>
+<div class="plan"><h3>Trainer, 1 month</h3><div class="price">₹6,000<small> /month</small></div><ul><li>Personal coach for 1 month</li><li>Max 2 people per session</li><li>Custom workout plan</li></ul><a class="btn ghost" href="#classes">See coaching slots</a></div>
+<div class="plan"><h3>Trainer, 1 year</h3><div class="price">₹15,000<small> /year</small></div><ul><li>Personal coach for 12 months</li><li>Max 2 people per session</li><li>Custom plan, updated as you progress</li></ul><a class="btn ghost" href="#classes">See coaching slots</a></div>
+</div>
+</div></section>
+
+<section id="coaches"><div class="wrap">
+<h2>Your coaches</h2>
+<p class="sub">Every coach is certified and trains on the same floor you do.</p>
+<div class="team">
+<div><div class="av" aria-hidden="true">R</div><h3>Rohan Mehta</h3><p>Head coach, strength and powerlifting</p></div>
+<div><div class="av" aria-hidden="true">A</div><h3>Ayesha Khan</h3><p>Conditioning and fat-loss programs</p></div>
+<div><div class="av" aria-hidden="true">V</div><h3>Vikram Rao</h3><p>Functional training and athletic conditioning</p></div>
+<div><div class="av" aria-hidden="true">N</div><h3>Neha Joshi</h3><p>Hypertrophy and women’s strength training</p></div>
+</div>
+</div></section>
+
+<section id="join" class="alt"><div class="wrap">
+<h2>Book your free trial day</h2>
+<p class="sub">One day, no charge, once per person. Leave your details and we’ll have your pass ready at the front desk.</p>
+<form id="f">
+<label>Full name<input name="n" required autocomplete="name"></label>
+<label>Phone number<input name="p" type="tel" required autocomplete="tel"></label>
+<button class="btn" type="submit">Book my free day</button>
+</form>
+<div class="ok" id="ok" hidden></div>
+</div></section>
+</main>
+
+<footer><div class="wrap"><span>© 2026 Demo Gym · Demo website</span><span>Open daily 6am–10pm</span></div></footer>
+
+<script>
+const S={Mon:[["06:30","Strength coaching","Rohan",2],["18:00","Conditioning coaching","Ayesha",0],["19:30","Functional training","Vikram",1]],
+Tue:[["07:00","Muscle building","Neha",2],["18:30","Strength coaching","Rohan",1]],
+Wed:[["06:30","Conditioning coaching","Ayesha",2],["19:00","Functional training","Vikram",2]],
+Thu:[["07:00","Strength coaching","Rohan",1],["18:30","Muscle building","Neha",2]],
+Fri:[["06:30","Fat loss coaching","Ayesha",2],["18:00","Functional training","Vikram",1]],
+Sat:[["09:00","Strength coaching","Rohan",2],["10:30","Fat loss coaching","Neha",0]],
+Sun:[["10:00","Open lift with a coach","Rohan",2]]};
+const booked={};let day=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"][new Date().getDay()];
+const tabs=document.getElementById("tabs"),list=document.getElementById("list");
+function draw(){
+tabs.innerHTML=Object.keys(S).map(d=>`<button class="tab" role="tab" aria-selected="${d===day}" data-d="${d}">${d}</button>`).join("");
+list.innerHTML=S[day].map((c,i)=>{const k=day+i,on=booked[k],left=c[3]-(on?1:0);
+return `<div class="cls"><time>${c[0]}</time><div><h3>${c[1]}</h3><p>${c[2]} · ${left>0?left+(left>1?" spots":" spot")+" left":"Full"}</p></div><button data-k="${k}" data-i="${i}" class="${on?"on":""}" ${left<=0&&!on?"disabled":""}>${on?"Booked ✓":left>0?"Book":"Full"}</button></div>`}).join("")}
+tabs.onclick=e=>{const d=e.target.dataset.d;if(d){day=d;draw()}};
+list.onclick=e=>{const k=e.target.dataset.k;if(k){booked[k]=!booked[k];draw()}};
+draw();
+const cnt=document.getElementById("cnt"),fill=document.getElementById("fill");
+setInterval(()=>{let n=+cnt.textContent+Math.round(Math.random()*4-2);n=Math.max(55,Math.min(105,n));cnt.textContent=n;fill.style.width=(n/120*100)+"%"},3500);
+document.getElementById("f").onsubmit=e=>{e.preventDefault();const f=e.target,ok=document.getElementById("ok");
+ok.textContent="You’re in, "+f.n.value.split(" ")[0]+". Show this message at the front desk to use your free trial day. (Demo only: nothing was sent.)";
+ok.hidden=false;f.hidden=true};
+</script>
+</body>
+</html>
